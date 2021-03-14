@@ -1,0 +1,980 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>.large[The disruptive nature of portable sequencing]</title>
+    <meta charset="utf-8" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link href="libs/tile-view/tile-view.css" rel="stylesheet" />
+    <script src="libs/tile-view/tile-view.js"></script>
+    <link href="libs/animate.css/animate.xaringan.css" rel="stylesheet" />
+    <link href="libs/tachyons/tachyons.min.css" rel="stylesheet" />
+    <link href="libs/panelset/panelset.css" rel="stylesheet" />
+    <script src="libs/panelset/panelset.js"></script>
+    <script src="libs/xaringanExtra-webcam/webcam.js"></script>
+    <script id="xaringanExtra-webcam-options" type="application/json">{"width":"1100","height":"800","margin":"1em"}</script>
+    <script src="libs/htmlwidgets/htmlwidgets.js"></script>
+    <script src="libs/jquery/jquery.min.js"></script>
+    <link href="libs/datatables-css/datatables-crosstalk.css" rel="stylesheet" />
+    <script src="libs/datatables-binding/datatables.js"></script>
+    <link href="libs/dt-core/css/jquery.dataTables.min.css" rel="stylesheet" />
+    <link href="libs/dt-core/css/jquery.dataTables.extra.css" rel="stylesheet" />
+    <script src="libs/dt-core/js/jquery.dataTables.min.js"></script>
+    <link href="libs/crosstalk/css/crosstalk.css" rel="stylesheet" />
+    <script src="libs/crosstalk/js/crosstalk.min.js"></script>
+    <link rel="stylesheet" href="libs/remark-css/example_mod.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# .large[The disruptive nature of portable sequencing]
+### <div class="line-block">Nvidia GTC, 12<small><sup>th</sup></small> - 16<small><sup>th</sup></small> April 2021<br />
+.large[<b>Dr Miles Benton</b>]<br />
+<br />
+<b>Human Genomics</b><br />
+<b>Institute of Environmental Science and Research <a href="www.esr.cri.nz">(ESR)</a></b><br />
+<b>Aotearoa</b> (New Zealand)</div>
+
+---
+
+class: middle hide_logo
+
+
+
+<div>
+<style type="text/css">.xaringan-extra-logo {
+width: 138px;
+height: 87px;
+z-index: 0;
+background-image: url(https://upload.wikimedia.org/wikipedia/commons/6/66/ESR_SFC_logo.png);
+background-size: contain;
+background-repeat: no-repeat;
+position: absolute;
+right:1.5em;bottom:1px;
+}
+</style>
+<script>(function () {
+  let tries = 0
+  function addLogo () {
+    if (typeof slideshow === 'undefined') {
+      tries += 1
+      if (tries < 10) {
+        setTimeout(addLogo, 100)
+      }
+    } else {
+      document.querySelectorAll('.remark-slide-content:not(.title-slide):not(.inverse):not(.hide_logo)')
+        .forEach(function (slide) {
+          const logo = document.createElement('a')
+          logo.classList = 'xaringan-extra-logo'
+          logo.href = 'https://www.esr.cri.nz/'
+          slide.appendChild(logo)
+        })
+    }
+  }
+  document.addEventListener('DOMContentLoaded', addLogo)
+})()</script>
+</div>
+
+# .center[Advocates for reproducible research...]
+
+## .center[Where possible all presentations and code are available online]
+
+&lt;br /&gt;
+
+&lt;p&gt;
+.center[
+&lt;img src="images/github_logo.png" style="width: 520px; margin-right: 1%; margin-top: 1.5em;"/&gt;
+&lt;img src="images/sirselim_qrcode.png" style="width: 202px; margin-right: 1%; margin-top: 1.5em;"/&gt;
+]
+&lt;/p&gt;
+
+&lt;br /&gt;
+
+.center[[sirselim.github.io/presentations](http://sirselim.github.io/presentations)]
+
+&lt;!-- SVG Icons are from https://simpleicons.org --&gt;
+&lt;footer class="pv3 ph3 ph5-ns tc"&gt;
+  &lt;a class="link near-black hover-blue dib h2 w2 mr3" href="https://github.com/sirselim" title="GitHub"&gt;
+    &lt;svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill-rule="evenodd" clip-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="1.414"&gt;&lt;path d="M8 0C3.58 0 0 3.582 0 8c0 3.535 2.292 6.533 5.47 7.59.4.075.547-.172.547-.385 0-.19-.007-.693-.01-1.36-2.226.483-2.695-1.073-2.695-1.073-.364-.924-.89-1.17-.89-1.17-.725-.496.056-.486.056-.486.803.056 1.225.824 1.225.824.714 1.223 1.873.87 2.33.665.072-.517.278-.87.507-1.07-1.777-.2-3.644-.888-3.644-3.953 0-.873.31-1.587.823-2.147-.083-.202-.358-1.015.077-2.117 0 0 .672-.215 2.2.82.638-.178 1.323-.266 2.003-.27.68.004 1.364.092 2.003.27 1.527-1.035 2.198-.82 2.198-.82.437 1.102.163 1.915.08 2.117.513.56.823 1.274.823 2.147 0 3.073-1.87 3.75-3.653 3.947.287.246.543.735.543 1.48 0 1.07-.01 1.933-.01 2.195 0 .215.144.463.55.385C13.71 14.53 16 11.534 16 8c0-4.418-3.582-8-8-8"/&gt;&lt;/svg&gt;
+  &lt;/a&gt;
+  &lt;a class="link hover-blue near-black dib h2 w2 mr3" href="https://twitter.com/miles_benton" title="Twitter"&gt;
+    &lt;svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill-rule="evenodd" clip-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="1.414"&gt;&lt;path d="M16 3.038c-.59.26-1.22.437-1.885.517.677-.407 1.198-1.05 1.443-1.816-.634.375-1.337.648-2.085.795-.598-.638-1.45-1.036-2.396-1.036-1.812 0-3.282 1.468-3.282 3.28 0 .258.03.51.085.75C5.152 5.39 2.733 4.084 1.114 2.1.83 2.583.67 3.147.67 3.75c0 1.14.58 2.143 1.46 2.732-.538-.017-1.045-.165-1.487-.41v.04c0 1.59 1.13 2.918 2.633 3.22-.276.074-.566.114-.865.114-.21 0-.416-.02-.617-.058.418 1.304 1.63 2.253 3.067 2.28-1.124.88-2.54 1.404-4.077 1.404-.265 0-.526-.015-.783-.045 1.453.93 3.178 1.474 5.032 1.474 6.038 0 9.34-5 9.34-9.338 0-.143-.004-.284-.01-.425.64-.463 1.198-1.04 1.638-1.7z" fill-rule="nonzero"/&gt;&lt;/svg&gt;
+  &lt;/a&gt;
+  &lt;a class="link hover-blue near-black dib h2 w2 mr3" href="https://scholar.google.co.nz/citations?user=iEhBavEAAAAJ&amp;hl=en" title="Google Scholar"&gt;
+    &lt;svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill-rule="evenodd" clip-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="1.414"&gt;&lt;path d="M12 24a7 7 0 1 1 0-14 7 7 0 0 1 0 14zm0-24L0 9.5l4.838 3.94A8 8 0 0 1 12 9a8 8 0 0 1 7.162 4.44L24 9.5z" fill-rule="nonzero"/&gt;&lt;/svg&gt;
+  &lt;/a&gt;
+  &lt;a class="link hover-blue near-black dib h2 w2 mr3" href="http://orcid.org/0000-0003-3442-965X" title="ORCID"&gt;
+    &lt;svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill-rule="evenodd" clip-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="1.414"&gt;&lt;path d="M12 0C5.372 0 0 5.372 0 12s5.372 12 12 12 12-5.372 12-12S18.628 0 12 0zM7.369 4.378c.525 0 .947.431.947.947s-.422.947-.947.947a.95.95 0 0 1-.947-.947c0-.525.422-.947.947-.947zm-.722 3.038h1.444v10.041H6.647V7.416zm3.562 0h3.9c3.712 0 5.344 2.653 5.344 5.025 0 2.578-2.016 5.025-5.325 5.025h-3.919V7.416zm1.444 1.303v7.444h2.297c3.272 0 4.022-2.484 4.022-3.722 0-2.016-1.284-3.722-4.097-3.722h-2.222z" fill-rule="nonzero"/&gt;&lt;/svg&gt;
+  &lt;/a&gt;
+&lt;/footer&gt;
+
+---
+class: middle
+
+# Who are we?
+
+.pull.right[
+.large[&lt;span style="color:#3498DB"&gt;**You may have seen recently**...&lt;/span&gt;]
+]
+
+---
+class: top
+
+# Genomics in NZ's pandemic response
+
+### A sequencing success story made possible by the awesome [**Una Ren**](https://twitter.com/sciolato), [**Matt Storey**](https://twitter.com/mathstorey) &amp; [**Joep de Ligt**](https://twitter.com/joepdl)
+
+&lt;article class="cf"&gt;
+  &lt;div class="fl w-50 bg-white tc"&gt;
+    &lt;img src="images/JN_FirstGenome.PNG" style="width: 80%; margin-right: 1%; margin-top: 0em;"/&gt;
+  &lt;/div&gt;
+  &lt;div class="fl w-40 bg-white tc"&gt;
+    &lt;p style="text-align:center"&gt; Give us some time and money and we'll demonstrate what this technology can do. &lt;br /&gt;  &lt;br /&gt;  &lt;br /&gt; &lt;/p&gt;
+  &lt;/div&gt;
+  
+  &lt;div class="fl w-40 bg-white tc"&gt;
+    &lt;img src="images/NZChiefSCIAdvisor.PNG" style="width: 100%; margin-right: 1%; margin-top: 0em;"/&gt;
+  &lt;/div&gt;
+&lt;/article&gt;
+
+---
+layout: false
+class: middle inverse
+
+background-image: url("https://cdn.vox-cdn.com/thumbor/llQlREwACaitewdPcLm5HzWT_g0=/0x1:1100x734/920x613/filters:focal(0x1:1100x734):format(webp)/cdn.vox-cdn.com/imported_assets/1507663/DNA-sequence.jpg")
+background-size: cover
+
+.massive[**Genomic sequencing**]
+
+???
+
+DNA - A, T, C, G
+Part of all 'living' things
+
+---
+
+# A snapshot of the Human Genomics group
+
+* **Independent research**
+  * type-2 diabetes &amp; obesity (genomics, epigenetics, protein 'omics)
+  * Guinea pigs! (&lt;span style="color:#3498DB"&gt;&lt;b&gt;Max Berry, University of Otago&lt;/b&gt;&lt;/span&gt;)
+  * empowering people to explore and interpret their data
+
+&lt;br&gt;
+
+* **Clinical diagnostics through genetics**
+  * Contract(s) with CCDHB &lt;span style="color:#3498DB"&gt;&lt;b&gt;Wellington Regional Genetics Lab&lt;/b&gt;&lt;/span&gt;
+  * Providing support to CCDHB for Clinical Genomics GA project (&lt;span style="color:#3498DB"&gt;&lt;b&gt;Stephen Robertson&lt;/b&gt;&lt;/span&gt;)
+
+&lt;br&gt;
+
+* **Clinical research**, in collaboration with local clinician (&lt;span style="color:#3498DB"&gt;&lt;b&gt;Richard Carroll&lt;/b&gt;&lt;/span&gt;) - hyperparathyroidism
+  * sequencing 100 exomes
+  * engaging clinicians from other DHBs
+  * exploring the replacement of gene panels with exome/genome
+
+---
+class: middle center
+
+# A big part of what we do is sequencing
+
+.center[&lt;img src="images/dna_hackers.jpg" style="width: 30%; margin-right: 1%; margin-top: 0em;"/&gt;]
+
+---
+layout: false
+class: middle
+
+&lt;p&gt;
+.center[
+&lt;img src="https://www.illumina.com/content/dam/illumina-marketing/images/decade-in-sequencing/decade-in-sequencing-320-web-graphic.jpg" style="width: 820px; margin-right: 1%; margin-top: 1.5em;"/&gt;
+]
+&lt;/p&gt;
+
+.small[.center[
+(image source: [illumina.com](https://www.illumina.com/techniques/sequencing/dna-sequencing.html))
+]]
+
+???
+
+I used the word portable in my previous slide, this is not a phrase one would attribute to machines from Illumina / PacBio.
+
+These things are huge! ... and expensive.
+
+---
+class: middle
+
+&gt; *"Soon, It Will Cost Less To Sequence A Genome Than To Flush A Toilet -- And That Will Change Medicine Forever"*
+
+&lt;p&gt;
+.center[
+&lt;img src="images/seqCost.png" style="width: 620px; margin-right: 1%; margin-top: 1.5em;"/&gt;
+]
+&lt;/p&gt;
+
+.small[.center[
+(image source: [https://www.businessinsider.com.au/super-cheap-genome-sequencing](https://www.businessinsider.com.au/super-cheap-genome-sequencing-by-2020-2014-10))
+]]
+
+---
+class: top
+
+# Can we speed things up?
+
+&lt;b&gt;Thanks to eResearch 2020&lt;b&gt; ...enter [Nvidia Clara Parabricks](https://www.nvidia.com/en-us/docs/parabricks/)
+
+&lt;article class="cf"&gt;
+  &lt;div class="fl w-50 bg-white tc"&gt;
+    &lt;img src="images/parabricks.png" style="width: 40%; margin-right: 1%; margin-top: 0em;"/&gt;
+  &lt;/div&gt;
+  &lt;div class="fl w-50 bg-white tc"&gt;
+    &lt;img src="images/nvidia.png" style="width: 50%; margin-right: 1%; margin-top: 1.5em;"/&gt;
+  &lt;/div&gt;
+&lt;/article&gt;
+
+.center[&lt;span style="color:#3498DB"&gt;&lt;b&gt; powered by GPU &lt;/b&gt;&lt;/span&gt;]
+
+.center[&lt;img src="images/tesla_v100.jpg" style="width: 30%; margin-right: 1%; margin-top: 0em;"/&gt;]
+
+---
+class: middle
+
+.center[
+&lt;img src="images/parabricks_pipelines.png" style="width: 70%; margin-right: 1%; margin-top: 0em;"/&gt;
+]
+
+&lt;br&gt;
+
+.center[[www.nvidia.com/en-us/healthcare/clara-parabricks/](https://www.nvidia.com/en-us/healthcare/clara-parabricks/)]
+
+---
+
+# How much does that matter?
+
+### Identical pipelines with a slight difference...
+
+&lt;article class="cf"&gt;
+  &lt;div class="fl w-100 w-50-ns bg-white"&gt;
+    &lt;ul&gt;
+    &lt;li&gt;&lt;b&gt;Pipeline [CPU]&lt;/b&gt;&lt;/li&gt;
+      &lt;ul&gt;
+        &lt;li&gt;Exomes: &gt;100X exome takes between 8-12 hours&lt;/li&gt;
+        &lt;li&gt;Genomes: ~30X genome takes between 30-48 hours&lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/ul&gt;
+    &lt;br&gt;
+    &lt;ul&gt;
+    &lt;li&gt;&lt;b&gt;Pipeline [GPU - Parabricks]&lt;/b&gt;&lt;/li&gt;
+      &lt;ul&gt;
+        &lt;li&gt;Exomes: &gt;100X exome takes between &lt;span style="color:#3498DB"&gt;&lt;b&gt;6-12 mins&lt;/b&gt;&lt;/span&gt;&lt;/b&gt;&lt;/li&gt;
+        &lt;li&gt;Genomes: 100X genome takes &lt;span style="color:#3498DB"&gt;&lt;b&gt;~4 hours&lt;/b&gt;&lt;/span&gt;&lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/ul&gt;
+  &lt;/div&gt;
+  &lt;div class="fl w-100 w-50-ns bg-white tc"&gt;
+    &lt;img src="images/fast-turtle.png" style="width: 70%; margin-right: 1%;"/&gt;
+  &lt;/div&gt;
+&lt;/article&gt;
+
+---
+class: middle
+
+# Another type of sequencing technology
+
+.pull-right[...sorry PacBio I'm ignoring you today...]
+
+---
+layout: false
+class: middle
+
+&lt;p&gt;
+.center[
+&lt;img src="https://cdn-a.william-reed.com/var/wrbm_gb_food_pharma/storage/images/publications/food-beverage-nutrition/foodnavigator.com/article/2018/03/21/oxford-nanopore-raises-funds-to-support-commercial-expansion/7992741-1-eng-GB/Oxford-Nanopore-raises-funds-to-support-commercial-expansion_wrbm_large.jpg" style="width: 620px; margin-right: 1%; margin-top: 1.5em;"/&gt;
+]
+&lt;/p&gt;
+
+.small[.center[
+(image source: [nanoporetech](https://nanoporetech.com/about-us/news/oxford-nanopore-announces-ps100-million-140m-fundraising-global-investors))
+]]
+
+???
+
+flongle: ~$500 USD for 5
+1 might be enough for a metagenome
+
+minION: $1000 
+
+smidgION: still just a concept
+
+gridION: ~$50K
+
+promethION: ~$230K
+
+---
+layout: false
+class: hide_logo
+
+background-image: url("images/david_slide.png")
+background-size: contain
+
+&lt;a href="https://f1000research.com/slides/8-1947" style="position:absolute; top:625px; left:190px"&gt;slide kindly supplied by David Eccles (f1000 presentation)&lt;/a&gt;
+&lt;a href="https://www.youtube.com/watch?v=CHCAb-PAqUI" style="position:absolute; top:652px; left:190px"&gt;"Sequencing DNA with Linux Cores and Naopores"&lt;/a&gt;
+
+???
+
+David's talk and a live demo are linked.
+
+---
+layout: false
+class: middle hide_logo
+
+&lt;center&gt;
+&lt;iframe width="1000" height="562" src="https://www.youtube.com/embed/RcP85JHLmnI" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen&gt;&lt;/iframe&gt;
+&lt;br /&gt;
+&amp;copy; Oxford Nanopore Technologies
+&lt;/center&gt;
+
+---
+layout: false
+class: middle
+
+# Example squiggle plot
+
+![](https://nanoporetech.github.io/tombo/_images/single_samp.png)
+
+.small[.center[
+(image source: [tombo manual](https://nanoporetech.github.io/tombo/plotting.html))
+]]
+
+???
+
+What we 'see' when DNA passes through the pores.
+
+---
+class: middle
+
+# GPUs accelerate basecalling of Nanopore long-read data (a lot)
+
+.center[
+&lt;img src="images/gpu_magic.jpg" style="width: 110%; margin-right: 1%; margin-top: 1em;"/&gt;
+]
+
+&lt;br&gt;
+
+.center[
+Nanopore basecalling benchmarking: [link (ESR GitHub)](https://esr-nz.github.io/gpu_basecalling_testing/gpu_benchmarking.html)
+]
+
+---
+class: middle
+
+# Why GPUs?
+
+.pull-left[
+New type of sequencing data requires new type of 'analysis'
+
+* squiggle data lends itself nicely to neural nets
+* GPUs are very capable in this space
+  - CUDA cores
+
+
+ESR GPU basecalling benchmarks [(link)](https://esr-nz.github.io/gpu_basecalling_testing/gpu_benchmarking.html)
+* Titan RTX &amp; 2x Tesla V100
+]
+
+.pull-right[
+![Titan RTX](images/titan.jpg)
+]
+
+&lt;br&gt;
+
+.small[.center[
+[UPDATE:] guppy is now able to scale across multiple GPUs!
+]]
+
+---
+class: middle
+
+# Let's step back a couple of years 
+
+.pull.right[
+.large[&lt;span style="color:#3498DB"&gt;... **a personal story** ...&lt;/span&gt;]
+]
+
+---
+class: middle
+
+&lt;p&gt;
+.center[
+&lt;img src="images/jamie_sm.jpg" style="width: 330px; margin-right: 1%; margin-top: 1.5em; border: 3px solid white;"/&gt;
+&lt;img src="images/jamie_big.jpg" style="width: 334px; margin-right: 1%; margin-top: 1.5em; border: 3px solid white;"/&gt;
+]
+&lt;/p&gt;
+
+---
+class: top
+
+# a personal story
+
+.large[
+&lt;br&gt;
+
+* had a lumbar puncture ('9 days' old) 
+  * (after being born 8 weeks early)
+
+&lt;br&gt;
+
+* suspected meningitis (bacteria/viral)?
+ * told after the fact
+
+&lt;br&gt;
+
+* \&gt;**48 hours** for results return
+
+]
+
+---
+class: top
+
+# a personal story
+
+.large[
+... imagine a more ‘real-time’ procedure:
+]
+
+&lt;br&gt;
+
+--
+
+.large[
+* a sample (i.e. blood) taken,
+* DNA/RNA extracted/enriched,
+* sequencing library prepared,
+* nanopore sequencing initiated,
+* sequence starts coming in almost instantly,
+* **&lt;span style="color:#3498DB"&gt;time to first read-match detection &lt;1 hr&lt;/span&gt;**
+
+]
+
+--
+
+&lt;br&gt;
+
+.center[.huge[
+**This isn't a stretch of the imagination anymore, soon to be reality**
+]]
+
+???
+
+Stress how fast and low cost this has the potential to be.
+
+---
+
+# Standing by for live transmission...
+
+&lt;p style="border:solid thick grey; border-radius: 0.5em; 
+          border-width:5px; padding-left:9px; padding-top:6px; align-items: center; display: flex; justify-content:center;
+          padding-bottom:6px; margin:0px auto; width:710px; height:540px;"&gt;&lt;i&gt;... live video content ...&lt;/i&gt;&lt;/p&gt;
+
+---
+class: top
+
+# what are we doing?
+
+.large[
+Portable ‘real-time’ sequencing for the masses?
+]
+
+--
+
+* &lt;span style="color:#3498DB"&gt;**the idea**&lt;/span&gt;
+
+  * low cost (&lt; many mobile phones)
+  * accessible
+  * portable
+  * robust (...may have "performed" a drop test...)
+  * fun!
+
+--
+  
+* &lt;span style="color:#3498DB"&gt;**example use cases**&lt;/span&gt;
+
+  * field sequencing (real-time monitoring, forensics, agriculture, waterways, ...)
+  * **clinical settings**
+  * community outreach / teaching
+
+--
+
+.center[
+Community Science | "United in Data"
+]
+
+---
+class: middle
+
+# Our experiences with the Xavier [(link)](https://hackmd.io/@Miles/HkumH7sBH)
+
+.pull-left[.right[
+&lt;img src="images/IMG_20191021_165639.jpg" style="width: 200px;"/&gt;
+&lt;img src="images/IMG_20191025_094614.jpg" style="width: 200px;"/&gt;
+]]
+
+.pull-right[.left[
+&lt;img src="images/battery_charge.jpg" style="width: 200px;"/&gt;
+&lt;img src="images/xavier_in_use.jpg" style="width: 200px;"/&gt;
+]]
+
+.center[
+&lt;img src="images/jetson_xavier_jtop_screenshot.png" style="width: 650px;"/&gt;
+]
+
+???
+
+Talk about the Xavier specs:
+
+ * 8 core arm 
+ * 16 GB of RAM
+ * 512 CUDA core and 64 tensor cores
+ * 512 GB SSD NVMe
+
+---
+class: top
+
+# Benchmarking [(link)&lt;sup&gt;*&lt;/sup&gt;](https://gist.github.com/sirselim/2ebe2807112fae93809aa18f096dbb94)
+
+.small[
+\* spoilers for those following along live
+]
+
+--
+
+&lt;br&gt;
+
+Most Jetson devices have the ability to be put into different power modes
+
+&lt;br&gt;
+
+<div id="htmlwidget-7033c1951bbb6782d3bd" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-7033c1951bbb6782d3bd">{"x":{"filter":"none","fillContainer":false,"data":[["10W","15W","30W 2 cores","30W 4 cores","30W MAX (8 cores)"],["33.4 mins","14.3 mins","10.8 mins","10.8 mins","7.5 mins"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>Power.mode<\/th>\n      <th>Time<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"t","order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+.small[
+***Note:*** this table represents basecalling performed when running on a portable powerbank.
+]
+
+???
+
+Why is 10W mode exciting?
+
+We're running in 30W MAX mode for this live demo - running on a portable powerpack.
+
+---
+class: top
+
+## Very rough comparison of Nvidia ecosystem&lt;sup&gt;#&lt;/sup&gt;
+
+<div id="htmlwidget-9aefe0a93c4521c156df" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-9aefe0a93c4521c156df">{"x":{"filter":"none","fillContainer":false,"data":[["Jetson Nano","Jetson Xavier NX*","Jetson Xavier","Geforce 1080 Ti","Geforce 2080 Ti","Titan RTX","Tesla V100"],["~0.5","6","11","11.3","~13-14","16.3","16.4"],["$99","$399","$699","~$650","~$800-$1000","~$3000","~$8500"],["5-10W","10-15W","10-30W","215W","250W","280W","250W"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>Card<\/th>\n      <th>TFLOPS<\/th>\n      <th>Price<\/th>\n      <th>Power<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"t","order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+
+.small[Price in USD]  
+.small[&lt;sup&gt;#&lt;/sup&gt; a very small selection of what Nvidia offers obviously!]  
+.small[\* this can fit in an existing Jetson Nano carrier boards]
+
+???
+
+V100 could rip through this data in a couple of mins, but consider the cost, power, etc.
+
+Xavier NX is exciting, module that can slot into the Nano body [**hold up Nano device**]
+
+---
+class: middle
+
+# Community engagement leading to empowerment
+
+.pull.right[
+&lt;span style="color:#3498DB"&gt;... **a few stories of the journey** ...&lt;/span&gt;
+]
+
+---
+
+# So how about unlocking it for everyone?
+
+.center[
+&lt;img src="images/JB_twitterprofile.png" style="width: 60%; margin-right: 1%; margin-top: 1em;"/&gt;
+]
+
+---
+
+# The unboxing and a slight snag
+
+&lt;article class="cf"&gt;
+  &lt;div class="fl w-50 bg-white tc"&gt;
+    &lt;img src="images/geforce2070_JB.png" style="width: 65%; margin-right: 1%; margin-top: 0em;"/&gt;
+  &lt;/div&gt;
+  &lt;div class="fl w-50 bg-white tc"&gt;
+    &lt;img src="images/six_pin_plugs.png" style="width: 64%; margin-right: 63%; margin-top: 0em;"/&gt;
+  &lt;/div&gt;
+&lt;/article&gt;
+
+---
+
+# Success
+
+&lt;article class="cf"&gt;
+  &lt;div class="fl w-50 bg-white tc"&gt;
+    &lt;img src="images/duct_tape.png" style="width: 65%; margin-right: 1%; margin-top: 0em;"/&gt;
+  &lt;/div&gt;
+  &lt;div class="fl w-40 bg-white tc"&gt;
+    &lt;img src="images/nvidia_smi.png" style="width: 70%; margin-right: 1%; margin-top: 0em;"/&gt;
+  &lt;/div&gt;
+  &lt;div class="fl w-40 bg-white tc"&gt;
+    &lt;img src="images/guppy_2070.png" style="width: 70%; margin-right: 1%; margin-top: 0em;"/&gt;
+  &lt;/div&gt;
+&lt;/article&gt;
+
+---
+class: middle
+
+# A global cast of many
+
+* [***Kenya***] Jean-Bakka Domelevo Entfellner ([@JeanBakaDE](https://twitter.com/JeanBakaDE))
+
+* [***USA***] John Erb-Downward ([@Bombanat](https://twitter.com/bombanat))
+
+* [***Italy***] Luigi Faino ([@lfaino](https://twitter.com/lfaino))
+
+* [***Switzerland***] Jürgen Hench
+
+* [***USA***] Nvidia Clara Team ([Clara AGX site](https://developer.nvidia.com/clara-agx-devkit))
+
+&lt;br &gt;
+
+.center[You can follow the story here: [GitHub Gist - Xavier basecalling notes](https://gist.github.com/sirselim/2ebe2807112fae93809aa18f096dbb94)]
+
+---
+
+# ~~The future...~~
+
+.center[
+&lt;img src="images/jetson_family.jpg" style="width: 45%; margin-right: 1%; margin-top: 0em;"/&gt;
+]
+
+.center[
+&lt;img src="images/nvidia_tegra.jpg" style="width: 40%; margin-right: 1%; margin-top: 0em;"/&gt;
+]
+
+---
+
+# ~~The (not so distant) future...~~
+
+&lt;article class="cf"&gt;
+  &lt;div class="fl w-50 bg-white tc"&gt;
+    &lt;img src="images/xaviernx_seqkit.jpg" style="width: 97%; margin-right: 1%; margin-top: 0.5em;"/&gt;
+  &lt;/div&gt;
+  &lt;div class="fl w-50 bg-white tc"&gt;
+    &lt;img src="images/xaviernx_compact_seqkit.jpg" style="width: 97%; margin-right: 1%; margin-top: 0.5em;"/&gt;
+  &lt;/div&gt;
+&lt;/article&gt;
+
+.center[
+&lt;img src="images/nvidia_tegra.jpg" style="width: 40%; margin-right: 1%; margin-top: 1.65em;"/&gt;
+]
+
+---
+class: hide_logo
+
+# The present!
+
+&lt;article class="cf"&gt;
+    &lt;div class="fl w-100 w-33-m w-50-l pa1"&gt;
+    &lt;a class="db aspect-ratio aspect-ratio--1x1"&gt;
+      &lt;span role="img" style="background-image:url(images/xavier-ont.gif);" class="bg-center cover aspect-ratio--object"&gt;&lt;/span&gt;
+    &lt;/a&gt;
+  &lt;/div&gt;
+  &lt;div class="fl w-50 w-33-m w-25-l pa1"&gt;
+    &lt;a class="db aspect-ratio aspect-ratio--1x1"&gt;
+      &lt;span role="img" style="background-image:url(images/xavnx_board.jpg);" class="bg-center cover aspect-ratio--object"&gt;&lt;/span&gt;
+    &lt;/a&gt;
+  &lt;/div&gt;
+  &lt;div class="fl w-50 w-33-m w-25-l pa1"&gt;
+    &lt;a class="db aspect-ratio aspect-ratio--1x1"&gt;
+      &lt;span role="img" style="background-image:url(images/xavnx_screen.jpg);" class="bg-center cover aspect-ratio--object"&gt;&lt;/span&gt;
+    &lt;/a&gt;
+  &lt;/div&gt;
+  &lt;div class="fl w-50 w-33-m w-25-l pa1"&gt;
+    &lt;a class="db aspect-ratio aspect-ratio--1x1"&gt;
+      &lt;span role="img" style="background-image:url(images/Matt_hand.jpg);" class="bg-center cover aspect-ratio--object"&gt;&lt;/span&gt;
+    &lt;/a&gt;
+  &lt;/div&gt;
+  &lt;div class="fl w-50 w-33-m w-25-l pa1"&gt;
+    &lt;a class="db aspect-ratio aspect-ratio--1x1"&gt;
+      &lt;span role="img" style="background-image:url(images/full_kit.jpg);" class="bg-center cover aspect-ratio--object"&gt;&lt;/span&gt;
+    &lt;/a&gt;
+  &lt;/div&gt;
+&lt;/article&gt;
+
+---
+layout: false
+class: hide_logo
+
+background-image: url("images/HeTangata.jpg")
+background-size: contain
+
+---
+
+# Hot off the press!
+
+.center[
+&lt;img src="images/adaptive_sampling.jpeg" style="width: 85%; margin-right: 1%; margin-top: 1.65em;"/&gt;
+&lt;br /&gt;
+&amp;copy; Oxford Nanopore Technologies
+]
+.center[
+&lt;br /&gt;
+Jürgen Hench, Basel, Switzerland ([cancer methylation sequencing](https://gist.github.com/sirselim/2ebe2807112fae93809aa18f096dbb94#gistcomment-3547889))
+]
+
+---
+
+# Hot off the press!
+
+&lt;article class="cf"&gt;
+  &lt;div class="fl w-50 bg-white tc"&gt;
+    &lt;img src="images/xavnx_phone.png" style="width: 45%; margin-right: 1%; margin-top: 0.5em;"/&gt;
+  &lt;/div&gt;
+  &lt;div class="fl w-50 bg-white tc"&gt;
+    &lt;img src="images/minknowui.jpg" style="width: 97%; margin-right: 1%; margin-top: 0.5em;"/&gt;
+    &lt;br&gt;
+    &lt;br&gt;
+    &lt;br&gt;
+    &lt;br&gt;
+    &lt;br&gt;
+    &lt;b&gt;Can now control all of this from our pockets!&lt;/b&gt;  
+    &lt;br&gt;
+    &lt;br&gt;
+    Available now on &lt;a href="https://play.google.com/store/apps/details?id=com.nanoporetech.minknowui&amp;hl=en_CA&amp;gl=US" target="blank"&gt;Android&lt;/a&gt; and &lt;a href="https://apps.apple.com/us/app/minknow/id1504645283" target="blank"&gt;iOS&lt;/a&gt;
+  &lt;/div&gt;
+&lt;/article&gt;
+
+---
+
+# Let's take a tour...
+
+&lt;p style="border:solid thick grey; border-radius: 0.5em; 
+          border-width:5px; padding-left:9px; padding-top:6px; align-items: center; display: flex; justify-content:center;
+          padding-bottom:6px; margin:0px auto; width:710px; height:540px;"&gt;&lt;i&gt;... live video content ...&lt;/i&gt;&lt;/p&gt;
+
+---
+
+## Our experiences with the Jeston Xaviers
+
+.small[
+#### Article in the NZ Herald
+  * The Genius of Genomics ([link](https://www.nzherald.co.nz/nz/the-genius-of-genomics-the-revolution-that-helped-nz-quash-covid-19/EFJWSHSL3TTYNNKYA5WEROIKHY/))
+  * Story also on ESR website ([link](https://www.esr.cri.nz/home/about-esr/media-releases/esr-scientists-showcase-benefits-of-collaboration-for-rapid-dna-sequencing/))
+
+#### Jetson Nanopore Sequencing 
+  * [A place to collate notes and resources of our journey into porting nanopore sequencing over to accessible, portable technology](https://github.com/sirselim/jetson_nanopore_sequencing)
+    * up to date information, including parts list and set up guide
+
+#### eResearch 2020 presentation 
+  * [Assessing the potential of ~~autonomous AI devices~~ cool tech for portable real-time sequencing](https://sirselim.github.io/presentations/eResearch_2020/eResearch_presentation_livedemo_2020#1)
+    * live base-calling and presentation run from the Xavier
+
+#### Xavier AGX setup and notes
+  * [Xavier AGX unboxing and setup](https://hackmd.io/@Miles/HkumH7sBH)
+
+#### Xavier base-calling benchmarking and notes
+  * [Xavier benchmarking](https://gist.github.com/sirselim/2ebe2807112fae93809aa18f096dbb94#file-basecalling_notes-md)
+]
+
+---
+
+# If you're interested in GPUs and genomics...
+
+.center[
+&lt;img src="images/gpu_musing_tweet.png" style="width: 45%; margin-right: 1%; margin-top: 1.65em;"/&gt;
+&lt;br /&gt;
+[GPU musings (with an eye on genomics)](https://hackmd.io/@Miles/B1U-cOMyu)
+]
+
+---
+class: middle hide_logo
+
+# Some parting thoughts
+
+---
+
+class: top
+
+# acknowledgements (people to 'nerd' out with!)
+
+&lt;div class="dt dt--fixed"&gt;
+  &lt;div class="dtc tc pv4 bg-white"&gt;
+    &lt;article class="mw5 center bg-white br3 pa3 pa4-ns mv3 ba b--black-10"&gt;
+      &lt;div class="tc"&gt;
+        &lt;img src="images/Matt_sm.png" class="br-100 h4 w4 dib ba b--black-05 pa2" title="Photo of team member"&gt;
+        &lt;h4 class="f3 mb2"&gt;Matt Storey&lt;/h4&gt;
+        &lt;h4 class="f5 fw4 gray mt0"&gt;(ESR)&lt;/h4&gt;
+      &lt;/div&gt;
+    &lt;/article&gt;
+  &lt;/div&gt;
+  &lt;div class="dtc tc pv4 bg-white"&gt;
+    &lt;article class="mw5 center bg-white br3 pa3 pa4-ns mv3 ba b--black-10"&gt;
+      &lt;div class="tc"&gt;
+        &lt;img src="images/Joep.jpg" class="br-100 h4 w4 dib ba b--black-05 pa2" title="Photo of team member"&gt;
+        &lt;h4 class="f3 mb2"&gt;Joep de Ligt&lt;/h4&gt;
+        &lt;h4 class="f5 fw4 gray mt0"&gt;(ESR)&lt;/h4&gt;
+      &lt;/div&gt;
+    &lt;/article&gt;
+  &lt;/div&gt;
+  &lt;div class="dtc tc pv4 bg-white"&gt;
+    &lt;article class="mw5 center bg-white br3 pa3 pa4-ns mv3 ba b--black-10"&gt;
+      &lt;div class="tc"&gt;
+        &lt;img src="images/Donia.png" class="br-100 h4 w4 dib ba b--black-05 pa2" title="Photo of team member"&gt;
+        &lt;h4 class="f3 mb2"&gt;Donia Macartney-Coxson&lt;/h4&gt;
+        &lt;h4 class="f5 fw4 gray mt0"&gt;(ESR)&lt;/h4&gt;
+      &lt;/div&gt;
+    &lt;/article&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+.pull-left[.medium[
+**Georgia Bell** (ESR)  
+Una Ren (ESR)  
+Richard Dean (ESR)
+]]
+
+.pull-right[.medium[
+Matthew Walton (ESR)  
+Shane Sturrock (ESR)  
+Russell Smithies (ESR)  
+]]
+
+---
+layout: false
+class: hide_logo
+
+background-image: url("images/TaiHuaRoa.jpg")
+background-size: contain
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false,
+"ratio": "16:9"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

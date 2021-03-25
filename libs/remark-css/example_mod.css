@@ -108,11 +108,6 @@ ul li { padding: 5px 0px; }
   }
 }
 
-.title-slide {
-  background-image: url(https://lh3.googleusercontent.com/LAsVP8THmZikeLd26pwA_FXbHPpEnYVqYckFMETqsyGtAu304pyh9QPKsbQ8qrd1hK5YttZJJ1eJgO60Za1iOeKWpeMgQ8keBDn90w-vlOMjzw4fHbAV2b9QO5O2VVq6rPV0pzo0T7XSSUhFvBK3X2QmU6KnkLB4vBC1rjLj8pd4SXhsGdWtRGJ-PpyMY2plM2ezIdi-FDqYnqQev8eGOwylIF5oCt1X1geMrBDVUcKmJENlMrtoniWDw4fSJ1vBlSs0E5Wc19zBuSnuQXL9aO-RuELqX9N_N-4Pu7jVp8yuvnVg2vt_Df9TlNRayc6X_yfZ3t99lZ1GKxHxrQhGOScGdQ_PINApLdsFKUQ2XXFY4RtNVXJMW6EZeMmoYYwXu_Q0xHJDZC0NHjR9BUXOi6YvyCBOj51E8a0U3qtVvNKGQUnMXR5Ot5K-OAVbiCgNkf9V-zGLweN70avTkZ3ye_yt2Zc4UZSinRVZkZ7tzOX8JiQsITb9HNSsxD6LUMWPfo538iEeJfBC5PUqKzf1zPHqm0QgITLlKNhvsafaCukZtpLYgxuwjPGsTGMLs8xbYT2hS4q63hFkAMnD-vUJ_y145kE_r_bK1hIR0pllBx93jBxGAjLiDaE3K1YTnssHrg6KE3AH0XJqKHDa4zk8hs5Z9ZF1YJ2_GI3pP5gLcRf9DcxH_oAX3Xwzr35qBqFAdXTV9BLbbEf3PgNdXvPVWQTv_Q=w1308-h981-no?authuser=0);
-  background-size: cover;
-}
-
 .title-slide.remark-slide-content:before{
   position: absolute;
   content:url(images/esr_logo.png);

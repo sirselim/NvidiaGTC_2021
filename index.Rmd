@@ -1,5 +1,5 @@
 ---
-title: ".large[The disruptive nature of portable sequencing]"
+title: ".large[The disruptive nature of portable sequencing & edge compute for community empowerment]"
 author:  |
   | Nvidia GTC, 12<small><sup>th</sup></small> - 16<small><sup>th</sup></small> April 2021
   | .large[<b>Dr Miles Benton</b>]
@@ -435,14 +435,6 @@ class: top
 Stress how fast and low cost this has the potential to be.
 
 ---
-
-# Standing by for live transmission...
-
-<p style="border:solid thick grey; border-radius: 0.5em; 
-          border-width:5px; padding-left:9px; padding-top:6px; align-items: center; display: flex; justify-content:center;
-          padding-bottom:6px; margin:0px auto; width:710px; height:540px;"><i>... live video content ...</i></p>
-
----
 class: top
 
 # what are we doing?
@@ -690,6 +682,50 @@ class: hide_logo
 </article>
 
 ---
+class: hide_logo
+
+# The present!
+
+<article class="cf">
+    <div class="fl w-100 w-33-m w-50-l pa1">
+    <a class="db aspect-ratio aspect-ratio--1x1">
+      <span role="img" style="background-image:url(images/IMG_20210203_102006.jpg);" class="bg-center cover aspect-ratio--object"></span>
+    </a>
+  </div>
+  <div class="fl w-50 w-33-m w-25-l pa1">
+    <a class="db aspect-ratio aspect-ratio--1x1">
+      <span role="img" style="background-image:url(images/IMG_20210209_212836.jpg);" class="bg-center cover aspect-ratio--object"></span>
+    </a>
+  </div>
+  <div class="fl w-50 w-33-m w-25-l pa1">
+    <a class="db aspect-ratio aspect-ratio--1x1">
+      <span role="img" style="background-image:url(images/IMG_20210211_125758.jpg);" class="bg-center cover aspect-ratio--object"></span>
+    </a>
+  </div>
+  <div class="fl w-50 w-33-m w-25-l pa1">
+    <a class="db aspect-ratio aspect-ratio--1x1">
+      <span role="img" style="background-image:url(images/IMG_20210205_155440.jpg);" class="bg-center cover aspect-ratio--object"></span>
+    </a>
+  </div>
+  <div class="fl w-50 w-33-m w-25-l pa1">
+    <a class="db aspect-ratio aspect-ratio--1x1">
+      <span role="img" style="background-image:url(images/IMG_20210204_112338.jpg);" class="bg-center cover aspect-ratio--object"></span>
+    </a>
+  </div>
+</article>
+
+---
+class: hide_logo
+
+# The present!
+
+Can you sequence SARS-Cov2 on ~$100 USD compute? ... **YES!**
+
+.center[
+<img src="images/nano_seq.jpg" style="width: 55%; margin-right: 1%; margin-top: 0em;"/>
+]
+
+---
 layout: false
 class: hide_logo
 
@@ -731,14 +767,6 @@ Jürgen Hench, Basel, Switzerland ([cancer methylation sequencing](https://gist.
     Available now on <a href="https://play.google.com/store/apps/details?id=com.nanoporetech.minknowui&hl=en_CA&gl=US" target="blank">Android</a> and <a href="https://apps.apple.com/us/app/minknow/id1504645283" target="blank">iOS</a>
   </div>
 </article>
-
----
-
-# Let's take a tour...
-
-<p style="border:solid thick grey; border-radius: 0.5em; 
-          border-width:5px; padding-left:9px; padding-top:6px; align-items: center; display: flex; justify-content:center;
-          padding-bottom:6px; margin:0px auto; width:710px; height:540px;"><i>... live video content ...</i></p>
 
 ---
 

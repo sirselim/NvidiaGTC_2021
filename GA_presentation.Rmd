@@ -849,15 +849,42 @@ Jürgen Hench, Basel, Switzerland ([cancer methylation sequencing](https://gist.
   * [A place to collate notes and resources of our journey into porting nanopore sequencing over to accessible, portable technology](https://github.com/sirselim/jetson_nanopore_sequencing)
     * up to date information, including parts list and set up guide
 
-#### eResearch 2020 presentation 
-  * [Assessing the potential of ~~autonomous AI devices~~ cool tech for portable real-time sequencing](https://sirselim.github.io/presentations/eResearch_2020/eResearch_presentation_livedemo_2020#1)
-    * live base-calling and presentation run from the Xavier
+<br>
 
 #### Xavier AGX setup and notes
   * [Xavier AGX unboxing and setup](https://hackmd.io/@Miles/HkumH7sBH)
 
 #### Xavier base-calling benchmarking and notes
   * [Xavier benchmarking](https://gist.github.com/sirselim/2ebe2807112fae93809aa18f096dbb94#file-basecalling_notes-md)
+]
+
+---
+
+## Our experiences with the Jeston Xaviers
+
+.small[
+#### Documentation
+
+  * [GPU musings (with an eye on genomics)](https://hackmd.io/@Miles/B1U-cOMyu)
+  * [Setting up live GPU basecalling on Linux](https://github.com/sirselim/jetson_nanopore_sequencing/blob/main/live_basecalling.md)
+
+<br>
+
+#### Presentations
+
+##### **eResearch 2020 presentation**
+
+  * [Assessing the potential of ~~autonomous AI devices~~ cool tech for portable real-time sequencing](https://sirselim.github.io/presentations/eResearch_2020/eResearch_presentation_livedemo_2020#1)
+    * live base-calling and presentation run from the Xavier
+
+##### **eResearch 2021 presentation**
+
+  * [Harnessing the disruptive nature of portable sequencing for community empowerment](https://sirselim.github.io/eResearch-Presentation-2021/index.html)
+    * live sequencing and presentation run from the Xavier NX (SARS-COV2 sequencing)
+
+##### **Nvidia Spring GPU Technology Conference 2021**
+
+  * [The disruptive nature of portable sequencing](https://sirselim.github.io/NvidiaGTC_2021/)
 ]
 
 ---

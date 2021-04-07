@@ -613,8 +613,8 @@ Most Jetson devices have the ability to be put into different power modes
 
 &lt;br&gt;
 
-<div id="htmlwidget-f96ad2048e380bb15a13" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-f96ad2048e380bb15a13">{"x":{"filter":"none","fillContainer":false,"data":[["10W","15W","30W 2 cores","30W 4 cores","30W MAX (8 cores)"],["33.4 mins","14.3 mins","10.8 mins","10.8 mins","7.5 mins"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>Power.mode<\/th>\n      <th>Time<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"t","order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-fef50951f76a706a214f" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-fef50951f76a706a214f">{"x":{"filter":"none","fillContainer":false,"data":[["10W","15W","30W 2 cores","30W 4 cores","30W MAX (8 cores)"],["33.4 mins","14.3 mins","10.8 mins","10.8 mins","7.5 mins"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>Power.mode<\/th>\n      <th>Time<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"t","order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 .small[
 ***Note:*** this table represents basecalling performed when running on a portable powerbank.
 ]
@@ -630,8 +630,8 @@ class: top
 
 ## Very rough comparison of Nvidia ecosystem&lt;sup&gt;#&lt;/sup&gt;
 
-<div id="htmlwidget-579baf7d12ddc8d390ca" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-579baf7d12ddc8d390ca">{"x":{"filter":"none","fillContainer":false,"data":[["Jetson Nano","Jetson Xavier NX*","Jetson Xavier","Geforce 1080 Ti","Geforce 2080 Ti","Titan RTX","Tesla V100"],["~0.5","6","11","11.3","~13-14","16.3","16.4"],["$99","$399","$699","~$650","~$800-$1000","~$3000","~$8500"],["5-10W","10-15W","10-30W","215W","250W","280W","250W"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>Card<\/th>\n      <th>TFLOPS<\/th>\n      <th>Price<\/th>\n      <th>Power<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"t","order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-a024fa17de0b0b5d14a2" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-a024fa17de0b0b5d14a2">{"x":{"filter":"none","fillContainer":false,"data":[["Jetson Nano","Jetson Xavier NX*","Jetson Xavier","Geforce 1080 Ti","Geforce 2080 Ti","Titan RTX","Tesla V100"],["~0.5","6","11","11.3","~13-14","16.3","16.4"],["$99","$399","$699","~$650","~$800-$1000","~$3000","~$8500"],["5-10W","10-15W","10-30W","215W","250W","280W","250W"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>Card<\/th>\n      <th>TFLOPS<\/th>\n      <th>Price<\/th>\n      <th>Power<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"t","order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 
 .small[Price in USD]  
 .small[&lt;sup&gt;#&lt;/sup&gt; a very small selection of what Nvidia offers obviously!]  
@@ -870,15 +870,42 @@ Jürgen Hench, Basel, Switzerland ([cancer methylation sequencing](https://gist.
   * [A place to collate notes and resources of our journey into porting nanopore sequencing over to accessible, portable technology](https://github.com/sirselim/jetson_nanopore_sequencing)
     * up to date information, including parts list and set up guide
 
-#### eResearch 2020 presentation 
-  * [Assessing the potential of ~~autonomous AI devices~~ cool tech for portable real-time sequencing](https://sirselim.github.io/presentations/eResearch_2020/eResearch_presentation_livedemo_2020#1)
-    * live base-calling and presentation run from the Xavier
+&lt;br&gt;
 
 #### Xavier AGX setup and notes
   * [Xavier AGX unboxing and setup](https://hackmd.io/@Miles/HkumH7sBH)
 
 #### Xavier base-calling benchmarking and notes
   * [Xavier benchmarking](https://gist.github.com/sirselim/2ebe2807112fae93809aa18f096dbb94#file-basecalling_notes-md)
+]
+
+---
+
+## Our experiences with the Jeston Xaviers
+
+.small[
+#### Documentation
+
+  * [GPU musings (with an eye on genomics)](https://hackmd.io/@Miles/B1U-cOMyu)
+  * [Setting up live GPU basecalling on Linux](https://github.com/sirselim/jetson_nanopore_sequencing/blob/main/live_basecalling.md)
+
+&lt;br&gt;
+
+#### Presentations
+
+##### **eResearch 2020 presentation**
+
+  * [Assessing the potential of ~~autonomous AI devices~~ cool tech for portable real-time sequencing](https://sirselim.github.io/presentations/eResearch_2020/eResearch_presentation_livedemo_2020#1)
+    * live base-calling and presentation run from the Xavier
+
+##### **eResearch 2021 presentation**
+
+  * [Harnessing the disruptive nature of portable sequencing for community empowerment](https://sirselim.github.io/eResearch-Presentation-2021/index.html)
+    * live sequencing and presentation run from the Xavier NX (SARS-COV2 sequencing)
+
+##### **Nvidia Spring GPU Technology Conference 2021**
+
+  * [The disruptive nature of portable sequencing](https://sirselim.github.io/NvidiaGTC_2021/)
 ]
 
 ---

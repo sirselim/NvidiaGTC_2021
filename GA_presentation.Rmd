@@ -273,6 +273,17 @@ class: middle
 </center>
 
 ---
+class: middle
+
+<center>
+<img src="https://i.imgur.com/2bZPSLj.png" style="width: 45%; margin-right: 1%; margin-top: 0em;"/>
+</center>
+
+<center>
+<a href="https://twitter.com/LeahKem63535098/status/1380108139119267840" target="blank">Fun with Nvidia A100s!!</a>
+</center>
+
+---
 class: top
 
 # Complete Overhaul! [Leah Kemp]
@@ -812,6 +823,16 @@ background-size: contain
 .center[
 <br />
 Jürgen Hench, Basel, Switzerland ([cancer methylation sequencing](https://gist.github.com/sirselim/2ebe2807112fae93809aa18f096dbb94#gistcomment-3547889))
+]
+
+---
+
+# Hot off the press!
+
+.center[
+<img src="https://i.imgur.com/lhVYBf0.png" style="width: 65%; margin-right: 1%; margin-top: 1.65em;"/>
+<br>
+[Data generated a few hours ago... (excuse the mess!)](https://hackmd.io/_fMMOiDvRRiZ1f0cS0uchg?view)
 ]
 
 ---
